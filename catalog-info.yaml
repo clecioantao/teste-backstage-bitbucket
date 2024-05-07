@@ -1,0 +1,52 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: plataforma-base-flask-api
+  file_path: devops/Dockerfile
+  description: Componente Teste
+  links:
+    - url: https://bitbucket.org/carrefour_ecommerce/plataforma-base-flask-api/src/main/
+      title: Bitbucket Repository
+      icon: bitbucket
+  tags:
+    - service
+    - plataforma-base-flask-api
+    - platform
+  annotations:
+    backstage.io/source-location: https://bitbucket.org/carrefour_ecommerce/plataforma-base-flask-api/src/main/
+    backstage.io/techdocs-ref: url:https://bitbucket.org/carrefour_ecommerce/plataforma-base-flask-api/src/main/docs
+spec:
+  type: service
+  lifecycle: qa
+  owner: platform
+  system: system:default/base-system
+  providesApis: 
+    - plataforma-base-flask-api
+  dependsOn:
+    - resource:default/c4-shared-vpcs-prd-priv-02
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: plataforma-base-flask-api
+  description: Componente Teste
+  tags:
+    - service
+    - plataforma-base-flask-api
+    - platform
+    - api
+    - flask
+  links:
+    - url: https://bitbucket.org/carrefour_ecommerce/plataforma-base-flask-api/src/main/
+      title: Repositorio
+      icon: code
+spec:
+  type: openapi
+  lifecycle: qa
+  owner: platform
+  system: system:default/base-system
+  definition:
+    $text: ./spec/swagger.yaml
+  apiConsumedBy:
+    - component:default/plataforma-base-flask-api
